@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Admin - CRUD Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2 class="logo">Nova<span>Admin</span></h2>
+        <p class="menu-title">MENU</p>
+        <a href="#" class="nav-link active">▦ Dashboard</a>
+        <a href="#records" class="nav-link">▤ Records</a>
+        <div class="profile">
+            <div class="avatar">AD</div>
+            <div>
+                <strong>Admin User</strong>
+                <small>Administrator</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">WORKSPACE / OVERVIEW</p>
+                <h1>Dashboard</h1>
+            </div>
+            <span class="admin-badge">● Local Workspace</span>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <p>YOUR WORKSPACE</p>
+                <h2>Manage your records effortlessly.</h2>
+                <span>Add, update, search and organize your data.</span>
+            </div>
+            <button class="btn btn-white" id="addBtn">+ Add Record</button>
+        </section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <span>Total Records</span>
+                <h2 id="totalCount">0</h2>
+                <small>All saved records</small>
+            </article>
+            <article class="stat-card">
+                <span>Active Records</span>
+                <h2 id="activeCount">0</h2>
+                <small>Currently active</small>
+            </article>
+            <article class="stat-card">
+                <span>Inactive Records</span>
+                <h2 id="inactiveCount">0</h2>
+                <small>Currently inactive</small>
+            </article>
+        </section>
+
+        <section class="panel" id="records">
+            <div class="panel-heading">
+                <div>
+                    <h2>Records Management</h2>
+                    <p>Add, edit, delete and search records.</p>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <input type="search" id="searchInput"
+                    placeholder="Search name, email or department...">
+
+                <select id="statusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+
+                <button class="btn btn-primary" id="toolbarAddBtn">
+                    + Add Record
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>DEPARTMENT</th>
+                            <th>STATUS</th>
+                            <th>CREATED</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsBody"></tbody>
+                </table>
+                <div id="emptyState" class="empty-state">
+                    <h3>No records found</h3>
+                    <p>Add your first record to get started.</p>
+                </div>
+            </div>
+
+            <div class="table-footer">
+                <span id="resultsLabel">Showing 0 records</span>
+                <span>Data saved in your browser</span>
+            </div>
+        </section>
+
+        <footer>NovaAdmin © 2026 · CRUD Management System</footer>
+    </main>
+
+    <!-- Add/Edit Form -->
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+        <section class="modal">
+            <div class="modal-heading">
+                <h2 id="modalTitle">Add Record</h2>
+                <button type="button" class="close-btn"
+                    id="closeBtn" aria-label="Close">×</button>
+            </div>
+
+            <form id="recordForm">
+                <input type="hidden" id="recordId">
+
+                <label for="nameInput">Full Name</label>
+                <input id="nameInput" type="text" maxlength="80"
+                    placeholder="Enter full name" required>
+
+                <label for="emailInput">Email Address</label>
+                <input id="emailInput" type="email" maxlength="120"
+                    placeholder="Enter email address" required>
+
+                <label for="departmentInput">Department</label>
+                <select id="departmentInput" required>
+                    <option value="">Select Department</option>
+                    <option>Engineering</option>
+                    <option>Design</option>
+                    <option>Marketing</option>
+                    <option>Human Resources</option>
+                    <option>Finance</option>
+                    <option>Operations</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="statusInput">Status</label>
+                <select id="statusInput">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+
+                <p id="formError" class="form-error"></p>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary"
+                        id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary"
+                        id="saveBtn">Save Record</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
